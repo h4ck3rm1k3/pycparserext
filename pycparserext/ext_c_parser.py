@@ -189,7 +189,7 @@ class FuncDeclExt(c_ast.Node):
 
 
 # {{{ attributes
-
+import pprint
 class _AttributesMixin(object):
     def p_attributes_opt_1(self, p):
         """ attributes_opt : attribute_decl attributes_opt
@@ -274,6 +274,9 @@ class _AttributesMixin(object):
                 decl.type = TypeDeclExt.from_pycparser(decl.type)
                 decl.type.attributes = attr_decl
             elif not isinstance(p[2], c_ast.TypeDecl):
+                #pprint.pprint(p.lexer.__dict__)
+                #pprint.pprint(p.parser.__dict__)
+                #pprint.pprint(p.__dict__)
                 raise NotImplementedError(
                         "cannot attach attributes to nodes of type '%s'"
                         % type(p[1]))
